@@ -1,4 +1,4 @@
-# OpenInItermDroplet
+# OpenInITermDroplet
 
 A Finder droplet for OS X Yosemite to open selected folder in iTerm3 (not applicable to iTerm2).
 
