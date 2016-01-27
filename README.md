@@ -7,3 +7,5 @@ Usage first copy droplet to `/Applications/AppleScript`
 To install ⌘-Drag the droplet to the toolbar of any Finder window.
 
 To uninstall Ctrl-click Finder toolbar to customise, then drag the droplet down to palette.
+
+Credit to Marc Liyanage @liyanage for the initial droplet <https://github.com/liyanage/open-terminal-here>
