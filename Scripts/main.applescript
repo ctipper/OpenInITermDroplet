@@ -78,6 +78,9 @@ on process_item(this_item)
 	
 	tell application "iTerm"
 		activate
+		if (count windows) is 0 then
+			activate
+		end if
 		select first window
 		tell current window
 			create tab with default profile

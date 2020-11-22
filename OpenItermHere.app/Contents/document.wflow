@@ -1,161 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>AMApplicationBuild</key>
-	<string>444.42</string>
-	<key>AMApplicationVersion</key>
-	<string>2.9</string>
-	<key>AMDocumentVersion</key>
-	<string>2</string>
-	<key>actions</key>
-	<array>
-		<dict>
-			<key>action</key>
-			<dict>
-				<key>AMAccepts</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Optional</key>
-					<true/>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>AMActionVersion</key>
-				<string>1.0.2</string>
-				<key>AMApplication</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>AMParameterProperties</key>
-				<dict>
-					<key>source</key>
-					<dict/>
-				</dict>
-				<key>AMProvides</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>ActionBundlePath</key>
-				<string>/System/Library/Automator/Run AppleScript.action</string>
-				<key>ActionName</key>
-				<string>Run AppleScript</string>
-				<key>ActionParameters</key>
-				<dict>
-					<key>source</key>
-					<string>(*
-
-	Open Terminal Here
-	
-	A toolbar script for Mac OS X
-	
-	Written by Marc Liyanage
-	
-	
-	See http://www.apple.com/applescript/macosx/toolbar_scripts/ for
-	more information about toolbar scripts.
-	
-	See http://www.entropy.ch/software/applescript/ for the latest
-	version of this script.
-	
-	
-	History:
-	
-	30-OCT-2001: Version 1.0, adapted from one of the example toolbar scripts
-	30-OCT-2001: Now handles embedded single quote characters in file names
-	30-OCT-2001: Now handles folders on volumes other than the startup volume
-	30-OCT-2001: Now handles click on icon in top-level (machine) window
-	31-OCT-2001: Now displays a nicer terminal window title, courtesy of Alain Content
-	11-NOV-2001: Now folders within application packages (.app directories) and has a new icon
-	12-NOV-2001: New properties to set terminal columns and rows as the Terminal does not use default settings
-	14-NOV-2001: Major change, now handles 8-bit characters in all shells, and quotes and spaces in tcsh
-	18-NOV-2001: Version 1.1: Rewrite, now uses a temporary file  ~/.OpenTerminalHere to communicate
-	             the directory name between AppleScript and the shell because this is much more reliable for 8-bit characters
-	16-JAN-2006: Version 2.0: Rewrite, now uses "quoted form of" and "POSIX Path". This gets rid of
-	             Perl and temp files, but it no longer handles files instead of folders.
-	24-JAN-2007: Version 2.1: Integrated enhancements by Stephan Hradek, can again handle dropped files.
-	06-AUG-2008: Version 2.2: Added terminal control sequence to clear the visible cd command.
-    	26-OCT-2008: Version 2.3: Incorporated changes from Florian ?, handling case where Terminal was not already running
-	14-JUL-2012: Version 2.3.1: Modified to activate iTerm
-	07-JUL-2015: Version 2.3.2: Modified to activate iTerm3
-*)-- when the toolbar script icon is clicked--on run	tell application "Finder"		activate				try			set this_folder to (the target of the front window) as alias		on error			set this_folder to startup disk		end try			end tell		process_item(this_folder)	end run-- This handler processes folders dropped onto the toolbar script icon--on open these_items	repeat with this_item in these_items		my process_item(this_item)	end repeatend open-- this subroutine does the actual work--on process_item(this_item)	set the_path to POSIX path of this_item	repeat until the_path ends with "/"		set the_path to text 1 thru -2 of the_path	end repeat		set cmd to "cd " &amp; quoted form of the_path &amp; " &amp;&amp; printf '\\x1bc\\n'"		tell application "iTerm"		activate		select first window		tell current window			create tab with default profile		end tell		tell current window			tell current session				write text (cmd)			end tell		end tell	end tell	end process_item</string>
-				</dict>
-				<key>BundleIdentifier</key>
-				<string>com.apple.Automator.RunScript</string>
-				<key>CFBundleVersion</key>
-				<string>1.0.2</string>
-				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
-				<key>CanShowWhenRun</key>
-				<true/>
-				<key>Category</key>
-				<array>
-					<string>AMCategoryUtilities</string>
-				</array>
-				<key>Class Name</key>
-				<string>RunScriptAction</string>
-				<key>InputUUID</key>
-				<string>9E8CB743-CC21-4EF4-A5AF-67779ACC9BD5</string>
-				<key>Keywords</key>
-				<array>
-					<string>Run</string>
-				</array>
-				<key>OutputUUID</key>
-				<string>90800A59-6C0E-44C7-8E19-300D81603001</string>
-				<key>UUID</key>
-				<string>9DBE2C3F-E4F2-48DA-AC2E-E6E2F8A089B9</string>
-				<key>UnlocalizedApplications</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>arguments</key>
-				<dict>
-					<key>0</key>
-					<dict>
-						<key>default value</key>
-						<string>on run {input, parameters}
-	
-	(* Your script goes here *)
-	
-	return input
-end run</string>
-						<key>name</key>
-						<string>source</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>0</string>
-					</dict>
-				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
-				<key>isViewVisible</key>
-				<true/>
-				<key>location</key>
-				<string>318.000000:315.000000</string>
-				<key>nibPath</key>
-				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
-			</dict>
-			<key>isViewVisible</key>
-			<true/>
-		</dict>
-	</array>
-	<key>connectors</key>
-	<dict/>
-	<key>workflowMetaData</key>
-	<dict>
-		<key>workflowTypeIdentifier</key>
-		<string>com.apple.Automator.application</string>
-	</dict>
-</dict>
-</plist>
